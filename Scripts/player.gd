@@ -33,20 +33,36 @@ func _process(delta):
 func move(direction: Vector2):
 	# Get current tile Vector2i
 	var current_tile: Vector2i = tile_map_layer.local_to_map(global_position)
+	
 	# Get target tile Vector2i
 	var target_tile: Vector2i = Vector2i(
 		current_tile.x + direction.x,
 		current_tile.y + direction.y,
 	)
+	
 	# Get custom data layer from the target tile
 	var tile_data: TileData = tile_map_layer.get_cell_tile_data(target_tile)
 	if tile_data != null:
 		if tile_data.get_custom_data("walkable") == false:
 			return 
-	
+		if tile_data.get_custom_data("walkable") and tile_data.get_custom_data("fall"):
+			fall()
+		if tile_data.get_custom_data("walkable") and tile_data.get_custom_data("win"):
+			win()
+			
 	# Move player
 	is_moving = true
 	
 	global_position = tile_map_layer.map_to_local(target_tile)
 	
 	sprite_2d.global_position = tile_map_layer.map_to_local(current_tile)
+
+func fall():
+	var tween = create_tween()
+	var target_scale = Vector2(0,0)
+	tween.set_parallel(true)
+	tween.tween_property(self, "scale", target_scale, 1.0)
+	tween.tween_property(self, "rotation", 10, 1.0)
+	
+func win():
+	print("gg")
