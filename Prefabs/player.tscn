@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://7xuvdv7audf3"]
+[gd_scene load_steps=5 format=3 uid="uid://7xuvdv7audf3"]
 
 [ext_resource type="Script" uid="uid://dnw1smkne1a4b" path="res://Scripts/player.gd" id="1_5wxv7"]
 [ext_resource type="Texture2D" uid="uid://b8orlwn8drhmw" path="res://Assets/tilemap_packed.png" id="2_y5hcb"]
@@ -7,10 +7,17 @@
 atlas = ExtResource("2_y5hcb")
 region = Rect2(16, 128, 16, 16)
 
-[node name="Player" type="Node2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5wxv7"]
+size = Vector2(16, 15)
+
+[node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_5wxv7")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = SubResource("AtlasTexture_u7krg")
 
 [node name="Camera2D" type="Camera2D" parent="Sprite2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_5wxv7")

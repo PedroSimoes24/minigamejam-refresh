@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://cw5ko6gdo1c2y"]
+[gd_scene load_steps=2 format=3 uid="uid://cw5ko6gdo1c2y"]
 
 [ext_resource type="PackedScene" uid="uid://bxcrkcrmkk1qd" path="res://Prefabs/slot.tscn" id="1_wtqgt"]
-[ext_resource type="Resource" uid="uid://xl5xn1wb8khm" path="res://Resources/key.tres" id="2_7ajij"]
 
 [node name="UI" type="CanvasLayer"]
 
@@ -19,4 +18,3 @@ grow_vertical = 0
 
 [node name="Slot" parent="Hotbar" instance=ExtResource("1_wtqgt")]
 layout_mode = 2
-item = ExtResource("2_7ajij")

@@ -2,7 +2,9 @@ extends Node2D
 
 @onready var tile_map_layer: TileMapLayer = $"../TileMapLayer"
 @onready var sprite_2d: Sprite2D = $Sprite2D
-@onready var slot: Button = $Hotbar/Slot
+@onready var ui: CanvasLayer = $"../UI"
+
+@export var held_item: Item #item in hotbar
 
 var is_moving = false
 var halt_game = false
@@ -24,6 +26,7 @@ func _physics_process(delta):
 	sprite_2d.global_position = sprite_2d.global_position.move_toward(global_position, 1)
 
 func _process(delta):
+	#print("Item that is being held: " , held_item)
 	if halt_game:
 		return
 	
@@ -62,7 +65,6 @@ func move(direction: Vector2):
 func act():
 	# Get current_tile
 	var current_tile: Vector2i = tile_map_layer.local_to_map(global_position)
-	
 	# Get custom data layer from the current tile
 	var tile_data: TileData = tile_map_layer.get_cell_tile_data(current_tile)
 	
@@ -71,10 +73,8 @@ func act():
 			fall()
 		if tile_data.get_custom_data("walkable") and tile_data.get_custom_data("win"):
 			win()
-		#if tile_data.get_custom_data("enterable") and slot.icon == "res://Assets/key.png":
-			#print("weee")
 		if tile_data.get_custom_data("walkable") == false:
-			return 
+			return
 
 func fall():
 	halt_game = true
@@ -87,3 +87,15 @@ func fall():
 func win():
 	halt_game = true
 	print("gg")
+	
+	
+func add_to_inventory(item:Resource):
+	if held_item == null:
+		held_item = item
+	else:
+		print("hotbar already with one item")
+
+func update_hotbar():
+	var hotbar = get_node("/root/testes/UI")
+	var slot = ui.find_child("slot")
+	slot.set_item(held_item)
