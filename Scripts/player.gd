@@ -2,6 +2,7 @@ extends Node2D
 
 @onready var tile_map_layer: TileMapLayer = $"../TileMapLayer"
 @onready var sprite_2d: Sprite2D = $Sprite2D
+@onready var slot: Button = $Hotbar/Slot
 
 var is_moving = false
 
@@ -43,12 +44,14 @@ func move(direction: Vector2):
 	# Get custom data layer from the target tile
 	var tile_data: TileData = tile_map_layer.get_cell_tile_data(target_tile)
 	if tile_data != null:
-		if tile_data.get_custom_data("walkable") == false:
-			return 
 		if tile_data.get_custom_data("walkable") and tile_data.get_custom_data("fall"):
 			fall()
 		if tile_data.get_custom_data("walkable") and tile_data.get_custom_data("win"):
 			win()
+		if tile_data.get_custom_data("enterable") and slot.icon == "res://Assets/key.png":
+			print("weee")
+		if tile_data.get_custom_data("walkable") == false:
+			return 
 			
 	# Move player
 	is_moving = true

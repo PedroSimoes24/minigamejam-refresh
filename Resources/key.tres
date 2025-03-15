@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://xl5xn1wb8khm"]
+
+[ext_resource type="Texture2D" uid="uid://dj3qhrjj8qy6s" path="res://Assets/key.png" id="1_rheyv"]
+[ext_resource type="Script" uid="uid://dkn0kyp4vf4nw" path="res://Scripts/Item.gd" id="2_us8e1"]
+
+[resource]
+script = ExtResource("2_us8e1")
+icon = ExtResource("1_rheyv")
+name = "Key"
+description = "Opens Doors"
+metadata/_custom_type_script = "uid://dkn0kyp4vf4nw"
