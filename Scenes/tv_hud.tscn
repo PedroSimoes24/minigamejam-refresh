@@ -1,0 +1,148 @@
+[gd_scene load_steps=32 format=3 uid="uid://db0ykk5df6q0"]
+
+[ext_resource type="Script" uid="uid://bi2bslw2na1qh" path="res://Scenes/tv_hud.gd" id="1_2eaji"]
+[ext_resource type="Texture2D" uid="uid://cn2iesfce3m2f" path="res://Assets/televisao.png" id="1_16d25"]
+[ext_resource type="Texture2D" uid="uid://d33hhu0km3mrr" path="res://Assets/glitched/glitch1.png" id="1_isfp3"]
+[ext_resource type="Texture2D" uid="uid://bcp6j4o72muoh" path="res://Assets/glitched/glitch2.png" id="2_2eaji"]
+[ext_resource type="Texture2D" uid="uid://bwihqn42yfaqt" path="res://Assets/glitched/glitch3.png" id="3_cr2sp"]
+[ext_resource type="Texture2D" uid="uid://ch7et15ow4wpk" path="res://Assets/glitched/glitch4.png" id="4_xplw2"]
+[ext_resource type="Texture2D" uid="uid://b4ow2to562xwp" path="res://Assets/smack/HandAnimations1.png" id="7_fvmh3"]
+[ext_resource type="Texture2D" uid="uid://bs4wch2md3j6w" path="res://Assets/smack/HandAnimations2.png" id="8_7j6e8"]
+[ext_resource type="Texture2D" uid="uid://cnqm7agseuihb" path="res://Assets/smack/HandAnimations3.png" id="9_hbren"]
+[ext_resource type="Texture2D" uid="uid://cn6wvv1bbgaby" path="res://Assets/smack/HandAnimations4.png" id="10_h1s8p"]
+[ext_resource type="Texture2D" uid="uid://bp51gd0ionft6" path="res://Assets/smack/HandAnimations5.png" id="11_rwyht"]
+[ext_resource type="Texture2D" uid="uid://ytujn3w44dnl" path="res://Assets/smack/HandAnimations6.png" id="12_6qa2m"]
+[ext_resource type="Texture2D" uid="uid://bqgbr7ufuo3rh" path="res://Assets/smack/HandAnimations7.png" id="13_5hbcq"]
+[ext_resource type="Texture2D" uid="uid://bspqccpv7n4dy" path="res://Assets/smack/HandAnimations8.png" id="14_51np5"]
+[ext_resource type="Texture2D" uid="uid://jis6rerpbml3" path="res://Assets/smack/HandAnimations9.png" id="15_qi535"]
+[ext_resource type="Texture2D" uid="uid://c3mvhbrk2ookf" path="res://Assets/smack/HandAnimations10.png" id="16_jrm2q"]
+[ext_resource type="Texture2D" uid="uid://ynakujh12pfn" path="res://Assets/smack/HandAnimations11.png" id="17_cw7kn"]
+[ext_resource type="Texture2D" uid="uid://dipls0ujuq8hs" path="res://Assets/smack/HandAnimations12.png" id="18_o2041"]
+[ext_resource type="Texture2D" uid="uid://btin4t8mestbl" path="res://Assets/smack/HandAnimations13.png" id="19_5u23u"]
+[ext_resource type="Texture2D" uid="uid://d3cxlc88lvx5u" path="res://Assets/smack/HandAnimations14.png" id="20_6eqt2"]
+[ext_resource type="Texture2D" uid="uid://bowcbli87unx4" path="res://Assets/smack/HandAnimations15.png" id="21_1rb00"]
+[ext_resource type="Texture2D" uid="uid://bqk7x0omnh3ps" path="res://Assets/smack/HandAnimations16.png" id="22_e5ksp"]
+[ext_resource type="Texture2D" uid="uid://wcpvxinkkvsn" path="res://Assets/smack/HandAnimations17.png" id="23_cqm60"]
+[ext_resource type="Texture2D" uid="uid://db48etcnepucs" path="res://Assets/smack/HandAnimations18.png" id="24_i1muv"]
+[ext_resource type="Texture2D" uid="uid://xdxmsy1rq320" path="res://Assets/smack/HandAnimations19.png" id="25_al6kn"]
+[ext_resource type="Texture2D" uid="uid://bvbnocll26v0v" path="res://Assets/smack/HandAnimations20.png" id="26_oy0rc"]
+[ext_resource type="Texture2D" uid="uid://c3e5u7vexye2e" path="res://Assets/smack/HandAnimations21.png" id="27_6s0mo"]
+[ext_resource type="Texture2D" uid="uid://dki172x05hk20" path="res://Assets/smack/HandAnimations22.png" id="28_385p8"]
+[ext_resource type="Texture2D" uid="uid://bgg2mwokxpv5n" path="res://Assets/smack/HandAnimations23.png" id="29_dyuda"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_elhqd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_isfp3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_2eaji")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_cr2sp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_xplw2")
+}],
+"loop": true,
+"name": &"default",
+"speed": 7.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cbt4a"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_fvmh3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_7j6e8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_hbren")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_h1s8p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_rwyht")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_6qa2m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_5hbcq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_51np5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_qi535")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_jrm2q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_cw7kn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_o2041")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_5u23u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_6eqt2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_1rb00")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_e5ksp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_cqm60")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_i1muv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_al6kn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_oy0rc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_6s0mo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_385p8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_dyuda")
+}],
+"loop": false,
+"name": &"default",
+"speed": 20.0
+}]
+
+[node name="TVhud" type="CanvasLayer"]
+script = ExtResource("1_2eaji")
+
+[node name="GlitchedAnimation" type="AnimatedSprite2D" parent="."]
+position = Vector2(96, 96)
+sprite_frames = SubResource("SpriteFrames_elhqd")
+
+[node name="TV" type="Sprite2D" parent="."]
+position = Vector2(96, 96)
+texture = ExtResource("1_16d25")
+
+[node name="SmackAnimation" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(96, 97)
+sprite_frames = SubResource("SpriteFrames_cbt4a")
+frame = 22
+frame_progress = 1.0
+
+[connection signal="frame_changed" from="SmackAnimation" to="." method="_on_smack_animation_frame_changed"]
