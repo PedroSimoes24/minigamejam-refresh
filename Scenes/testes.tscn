@@ -4,9 +4,9 @@
 [ext_resource type="PackedScene" uid="uid://7xuvdv7audf3" path="res://Prefabs/player.tscn" id="2_r0556"]
 [ext_resource type="Resource" uid="uid://xl5xn1wb8khm" path="res://Resources/key.tres" id="3_o5fk6"]
 [ext_resource type="PackedScene" uid="uid://cw5ko6gdo1c2y" path="res://Prefabs/hotbar.tscn" id="3_rwpdq"]
-[ext_resource type="PackedScene" uid="uid://biuqhxx0mia2j" path="res://Prefabs/key_item.tscn" id="4_xlo2f"]
-[ext_resource type="Script" uid="uid://dljpgla8l1y7h" path="res://Prefabs/dummy.gd" id="6_m61ox"]
-[ext_resource type="PackedScene" uid="uid://boa2y8pv385w5" path="res://Scenes/interaction_area.tscn" id="7_r25ej"]
+[ext_resource type="PackedScene" path="res://Prefabs/key_item.tscn" id="4_xlo2f"]
+[ext_resource type="Script" path="res://Prefabs/dummy.gd" id="6_m61ox"]
+[ext_resource type="PackedScene" path="res://Scenes/interaction_area.tscn" id="7_r25ej"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hh5uf"]
 texture = ExtResource("1_r0556")
@@ -182,7 +182,7 @@ custom_data_layer_3/type = 1
 sources/0 = SubResource("TileSetAtlasSource_hh5uf")
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_f0x6b"]
-radius = 14.0
+radius = 11.0454
 
 [node name="TestMap" type="Node2D"]
 
