@@ -5,19 +5,28 @@ extends Node2D
 @onready var slot: Button = $Hotbar/Slot
 
 var is_moving = false
+var halt_game = false
 
 
 func _physics_process(delta):
+	if halt_game:
+		return
+	
 	if is_moving == false:
 		return
 	
 	if global_position == sprite_2d.global_position:
 		is_moving = false
+		act()
 		return
 	
+	# Move the sprite position to the global position set on move()
 	sprite_2d.global_position = sprite_2d.global_position.move_toward(global_position, 1)
 
 func _process(delta):
+	if halt_game:
+		return
+	
 	if is_moving:
 		return
 	
@@ -41,26 +50,34 @@ func move(direction: Vector2):
 		current_tile.y + direction.y,
 	)
 	
-	# Get custom data layer from the target tile
-	var tile_data: TileData = tile_map_layer.get_cell_tile_data(target_tile)
+	# Move player
+	is_moving = true
+	
+	# Update player global position (actuall position)
+	global_position = tile_map_layer.map_to_local(target_tile)
+	
+	# Set sprite position to the current one for smoothness
+	sprite_2d.global_position = tile_map_layer.map_to_local(current_tile)
+
+func act():
+	# Get current_tile
+	var current_tile: Vector2i = tile_map_layer.local_to_map(global_position)
+	
+	# Get custom data layer from the current tile
+	var tile_data: TileData = tile_map_layer.get_cell_tile_data(current_tile)
+	
 	if tile_data != null:
 		if tile_data.get_custom_data("walkable") and tile_data.get_custom_data("fall"):
 			fall()
 		if tile_data.get_custom_data("walkable") and tile_data.get_custom_data("win"):
 			win()
-		if tile_data.get_custom_data("enterable") and slot.icon == "res://Assets/key.png":
-			print("weee")
+		#if tile_data.get_custom_data("enterable") and slot.icon == "res://Assets/key.png":
+			#print("weee")
 		if tile_data.get_custom_data("walkable") == false:
 			return 
-			
-	# Move player
-	is_moving = true
-	
-	global_position = tile_map_layer.map_to_local(target_tile)
-	
-	sprite_2d.global_position = tile_map_layer.map_to_local(current_tile)
 
 func fall():
+	halt_game = true
 	var tween = create_tween()
 	var target_scale = Vector2(0,0)
 	tween.set_parallel(true)
@@ -68,4 +85,5 @@ func fall():
 	tween.tween_property(self, "rotation", 10, 1.0)
 	
 func win():
+	halt_game = true
 	print("gg")
