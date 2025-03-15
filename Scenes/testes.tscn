@@ -1,10 +1,12 @@
-[gd_scene load_steps=8 format=4 uid="uid://ddokfirlut2ka"]
+[gd_scene load_steps=11 format=4 uid="uid://ddokfirlut2ka"]
 
 [ext_resource type="Texture2D" uid="uid://b8orlwn8drhmw" path="res://Assets/tilemap_packed.png" id="1_r0556"]
 [ext_resource type="PackedScene" uid="uid://7xuvdv7audf3" path="res://Prefabs/player.tscn" id="2_r0556"]
 [ext_resource type="Resource" uid="uid://xl5xn1wb8khm" path="res://Resources/key.tres" id="3_o5fk6"]
 [ext_resource type="PackedScene" uid="uid://cw5ko6gdo1c2y" path="res://Prefabs/hotbar.tscn" id="3_rwpdq"]
 [ext_resource type="PackedScene" uid="uid://biuqhxx0mia2j" path="res://Prefabs/key_item.tscn" id="4_xlo2f"]
+[ext_resource type="Script" uid="uid://dljpgla8l1y7h" path="res://Prefabs/dummy.gd" id="6_m61ox"]
+[ext_resource type="PackedScene" uid="uid://boa2y8pv385w5" path="res://Scenes/interaction_area.tscn" id="7_r25ej"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hh5uf"]
 texture = ExtResource("1_r0556")
@@ -179,6 +181,9 @@ custom_data_layer_3/name = "enterable"
 custom_data_layer_3/type = 1
 sources/0 = SubResource("TileSetAtlasSource_hh5uf")
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_f0x6b"]
+radius = 14.0
+
 [node name="TestMap" type="Node2D"]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
@@ -192,5 +197,15 @@ position = Vector2(24, 40)
 
 [node name="KeyItem" parent="." instance=ExtResource("4_xlo2f")]
 item_data = ExtResource("3_o5fk6")
+
+[node name="Dummy" parent="." instance=ExtResource("2_r0556")]
+position = Vector2(107, 41)
+script = ExtResource("6_m61ox")
+
+[node name="InteractionArea" parent="Dummy" instance=ExtResource("7_r25ej")]
+action_name = "talk"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Dummy/InteractionArea"]
+shape = SubResource("CircleShape2D_f0x6b")
 
 [connection signal="body_entered" from="KeyItem" to="KeyItem" method="_on_body_entered"]
