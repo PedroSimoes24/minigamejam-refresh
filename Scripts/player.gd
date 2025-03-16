@@ -4,6 +4,8 @@ extends Node2D
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var ui: CanvasLayer = $"../UI"
 
+var current_scene = 0
+
 @export var held_item: Item #item in hotbar
 
 var is_moving = false
@@ -28,12 +30,28 @@ func _physics_process(delta):
 	sprite_2d.global_position = sprite_2d.global_position.move_toward(global_position, 1)
 
 func _process(delta):
-	#print("Item that is being held: " , held_item)
+	var current_tile: Vector2i = tile_map_layer.local_to_map(global_position)
+	var tile_data: TileData = tile_map_layer.get_cell_tile_data(current_tile)
+	var adjacent_tile: Vector2i = current_tile + Vector2i.UP
+	var adjacent_tile_data: TileData = tile_map_layer.get_cell_tile_data(adjacent_tile)
 	if halt_game:
 		return
 	
 	if is_moving:
 		return
+	
+	if is_on_door():
+		change_scene() # Change to your scene path
+		
+	if adjacent_tile_data.get_custom_data("enterable"):
+			if held_item != null and held_item.resource_path == "res://Resources/key.tres":
+				call_label("[E] to interact")
+				if Input.is_action_just_pressed("interact"):
+					try_interact()
+			else:
+				call_label("You're missing something")
+	else:
+		interact_label.hide()
 	
 	if Input.is_action_pressed("up"):
 		move(Vector2.UP)
@@ -44,6 +62,23 @@ func _process(delta):
 	elif Input.is_action_pressed("right"):
 		move(Vector2.RIGHT)
 
+func try_interact():
+	var current_tile: Vector2i = tile_map_layer.local_to_map(global_position)
+	var tile_data: TileData = tile_map_layer.get_cell_tile_data(current_tile)
+	var adjacent_tile: Vector2i = current_tile + Vector2i.UP
+	var adjacent_tile_data: TileData = tile_map_layer.get_cell_tile_data(adjacent_tile)
+
+	if adjacent_tile_data.get_custom_data("enterable"):
+		if held_item != null and held_item.resource_path == "res://Resources/key.tres":
+			
+			#Replacing the tile of the closed door to open door
+			var tile_source_id = tile_map_layer.get_cell_source_id(adjacent_tile)
+			var new_tile_atlas_coords = Vector2i(0, 0)
+			tile_map_layer.set_cell(adjacent_tile, tile_source_id, new_tile_atlas_coords)
+			#Removing he key from the inventory
+			held_item = null
+			print("door opened")
+		
 
 func move(direction: Vector2):
 	# Get current tile Vector2i
@@ -83,14 +118,6 @@ func act():
 			fall()
 		if tile_data.get_custom_data("walkable") and tile_data.get_custom_data("win"):
 			win()
-		if adjacent_tile_data.get_custom_data("enterable"):
-			if held_item != null and held_item.resource_path == "res://Resources/key.tres":
-				print("Key opened the door")
-			else:
-				call_label()
-				print("you're missing something")
-		else:
-			interact_label.hide()
 
 func fall():
 	halt_game = true
@@ -116,11 +143,26 @@ func update_hotbar():
 	var slot = ui.find_child("slot")
 	slot.set_item(held_item)
 
-func call_label():
+func call_label(text: String):
 	interact_label.show()
 	interact_label.z_index = 20
-	interact_label.text = "You're missing something"
+	interact_label.text = text
 	interact_label.add_theme_font_size_override("font_size", 5) 
 	add_child(interact_label)
 	interact_label.global_position = global_position + Vector2.LEFT * 28 + Vector2.UP * 13
 	
+	
+func is_on_door() -> bool:
+	var current_tile: Vector2i = tile_map_layer.local_to_map(global_position)
+	var tile_data: TileData = tile_map_layer.get_cell_tile_data(current_tile)
+
+	if tile_data and tile_data.get_custom_data("enterable"):
+		return true
+	return false
+	
+func change_scene():
+	current_scene += 1  # Increment to go to the next scene
+	var next_scene_path = "res://Scenes/level_" + str(current_scene) + ".tscn"
+
+	print("Changing scene to: ", next_scene_path)
+	get_tree().change_scene_to_file(next_scene_path)
