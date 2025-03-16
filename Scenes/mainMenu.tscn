@@ -1,0 +1,52 @@
+[gd_scene load_steps=7 format=3 uid="uid://bsqbbhf7vjw3o"]
+
+[ext_resource type="PackedScene" uid="uid://db0ykk5df6q0" path="res://Scenes/tv_hud.tscn" id="1_3uny1"]
+[ext_resource type="Script" uid="uid://c8e7ap0chgkst" path="res://Scenes/main_menu.gd" id="1_5pknu"]
+[ext_resource type="Texture2D" uid="uid://b8ymcwseiu5no" path="res://Assets/buttons/start_button_pressed.png" id="3_v10og"]
+[ext_resource type="Texture2D" uid="uid://cflst8v1do382" path="res://Assets/buttons/start_button.png" id="4_kqm77"]
+[ext_resource type="Texture2D" uid="uid://cragd4h64t7mw" path="res://Assets/buttons/quit_button_pressed.png" id="5_snj4n"]
+[ext_resource type="Texture2D" uid="uid://bgyrbmj82k7xo" path="res://Assets/buttons/quit_button.png" id="6_wofhc"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5pknu")
+metadata/_edit_use_anchors_ = true
+
+[node name="TVhud" parent="." instance=ExtResource("1_3uny1")]
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.378
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -48.0
+offset_top = -32.576
+offset_right = 48.0
+offset_bottom = 12.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Start" type="TextureButton" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("3_v10og")
+texture_pressed = ExtResource("4_kqm77")
+
+[node name="Quit" type="TextureButton" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("5_snj4n")
+texture_pressed = ExtResource("6_wofhc")
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
