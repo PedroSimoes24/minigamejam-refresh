@@ -12,6 +12,10 @@ var is_moving = false
 var halt_game = false
 var interact_label = Label.new()
 
+#animation 
+var last_direction: String = "down"  # Default direction
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+
 
 
 func _physics_process(delta):
@@ -20,7 +24,7 @@ func _physics_process(delta):
 	
 	if is_moving == false:
 		return
-	
+	#adawait get_tree().create_timer(0.5).timeout  # Waits for 2 seconds
 	if global_position == sprite_2d.global_position:
 		is_moving = false
 		act()
@@ -39,6 +43,23 @@ func _process(delta):
 	
 	if is_moving:
 		return
+	# se não estiver a mexer-se tem que deixar de fazer a animação e passar para Idle
+	if last_direction == "up" :
+		#if animation_player.is_playing():
+		#	await animation_player.animation_finished  # Waits for the current animation to end
+		animation_player.play("PlayerIdleUp")
+	if  last_direction == "down" :
+		#if animation_player.is_playing():
+		#	await animation_player.animation_finished  # Waits for the current animation to end
+		animation_player.play("PlayerIdle")
+	if  last_direction == "right" :
+		#if animation_player.is_playing():
+			#await animation_player.animation_finished  # Waits for the current animation to end
+		animation_player.play("PlayerIdleRight")
+	if  last_direction == "left" :
+		#if animation_player.is_playing():
+		#	await animation_player.animation_finished  # Waits for the current animation to end
+		animation_player.play("PlayerIdleLeft")
 	
 	if is_on_door():
 		change_scene() # Change to your scene path
@@ -55,12 +76,16 @@ func _process(delta):
 	
 	if Input.is_action_pressed("up"):
 		move(Vector2.UP)
+		animation_player.play("PlayerIdleUp")
 	elif Input.is_action_pressed("down"):
 		move(Vector2.DOWN)
+		animation_player.play("PlayerIdle")
 	elif Input.is_action_pressed("left"):
 		move(Vector2.LEFT)
+		animation_player.play("PlayerIdleLeft")
 	elif Input.is_action_pressed("right"):
 		move(Vector2.RIGHT)
+		animation_player.play("PlayerIdleRight")
 
 func try_interact():
 	var current_tile: Vector2i = tile_map_layer.local_to_map(global_position)
@@ -94,14 +119,29 @@ func move(direction: Vector2):
 	if tile_data.get_custom_data("walkable") == false:
 			return
 			
-	# Move player
-	is_moving = true
 	
 	# Update player global position (actuall position)
 	global_position = tile_map_layer.map_to_local(target_tile)
 	
+	# Determine movement and animation
+	if direction == Vector2.UP && is_moving == false:
+		#animation_player.play("PlayerRunUp")
+		last_direction = "up"
+	elif direction == Vector2.DOWN && is_moving == false:
+		#animation_player.play("PlayerRunDown")
+		last_direction = "down"
+	elif direction == Vector2.LEFT && is_moving == false:
+		#animation_player.play("PlayerRunLeft")
+		last_direction = "left"
+	elif direction == Vector2.RIGHT && is_moving == false:
+		#animation_player.play("PlayerRunRight")
+		last_direction = "right"
+	
+	# Move player
+	is_moving = true
 	# Set sprite position to the current one for smoothness
 	sprite_2d.global_position = tile_map_layer.map_to_local(current_tile)
+	
 
 func act():
 	# Get current_tile
