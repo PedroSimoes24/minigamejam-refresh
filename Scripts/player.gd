@@ -8,6 +8,8 @@ extends Node2D
 
 var is_moving = false
 var halt_game = false
+var interact_label = Label.new()
+
 
 
 func _physics_process(delta):
@@ -72,11 +74,23 @@ func act():
 	# Get custom data layer from the current tile
 	var tile_data: TileData = tile_map_layer.get_cell_tile_data(current_tile)
 	
+	#to check for door on top of player
+	var adjacent_tile: Vector2i = current_tile + Vector2i.UP
+	var adjacent_tile_data: TileData = tile_map_layer.get_cell_tile_data(adjacent_tile)
+	
 	if tile_data != null:
 		if tile_data.get_custom_data("walkable") and tile_data.get_custom_data("fall"):
 			fall()
 		if tile_data.get_custom_data("walkable") and tile_data.get_custom_data("win"):
 			win()
+		if adjacent_tile_data.get_custom_data("enterable"):
+			if held_item != null and held_item.resource_path == "res://Resources/key.tres":
+				print("Key opened the door")
+			else:
+				call_label()
+				print("you're missing something")
+		else:
+			interact_label.hide()
 
 func fall():
 	halt_game = true
@@ -101,3 +115,12 @@ func update_hotbar():
 	var hotbar = get_node("/root/testes/UI")
 	var slot = ui.find_child("slot")
 	slot.set_item(held_item)
+
+func call_label():
+	interact_label.show()
+	interact_label.z_index = 20
+	interact_label.text = "You're missing something"
+	interact_label.add_theme_font_size_override("font_size", 5) 
+	add_child(interact_label)
+	interact_label.global_position = global_position + Vector2.LEFT * 28 + Vector2.UP * 13
+	
