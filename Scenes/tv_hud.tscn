@@ -1,4 +1,4 @@
-[gd_scene load_steps=97 format=3 uid="uid://db0ykk5df6q0"]
+[gd_scene load_steps=97 format=3 uid="uid://patlfd5awr3o"]
 
 [ext_resource type="Script" uid="uid://bi2bslw2na1qh" path="res://Scenes/tv_hud.gd" id="1_2eaji"]
 [ext_resource type="Texture2D" uid="uid://cn2iesfce3m2f" path="res://Assets/televisao.png" id="1_16d25"]
