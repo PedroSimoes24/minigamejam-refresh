@@ -1,16 +1,24 @@
-[gd_scene load_steps=4 format=3 uid="uid://biuqhxx0mia2j"]
+[gd_scene load_steps=6 format=3 uid="uid://biuqhxx0mia2j"]
 
 [ext_resource type="Script" uid="uid://61a5bs67actx" path="res://Prefabs/key_item.gd" id="1_2kf2h"]
-[ext_resource type="Texture2D" uid="uid://dj3qhrjj8qy6s" path="res://Assets/key.png" id="1_jnm0g"]
+[ext_resource type="Resource" uid="uid://xl5xn1wb8khm" path="res://Resources/key.tres" id="2_84805"]
+[ext_resource type="Texture2D" uid="uid://bpeqvndmfpuqb" path="res://Assets/map.png" id="3_84805"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_feole"]
+atlas = ExtResource("3_84805")
+region = Rect2(48.4575, 46.2286, 16.0535, 16.2022)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2kf2h"]
+size = Vector2(13, 12)
 
 [node name="KeyItem" type="Area2D"]
 position = Vector2(90, 82)
 script = ExtResource("1_2kf2h")
+item_data = ExtResource("2_84805")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_jnm0g")
+texture = SubResource("AtlasTexture_feole")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 1)
 shape = SubResource("RectangleShape2D_2kf2h")

@@ -1,11 +1,15 @@
-[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://xl5xn1wb8khm"]
+[gd_resource type="Resource" script_class="Item" load_steps=4 format=3 uid="uid://xl5xn1wb8khm"]
 
-[ext_resource type="Texture2D" uid="uid://dj3qhrjj8qy6s" path="res://Assets/key.png" id="1_rheyv"]
+[ext_resource type="Texture2D" uid="uid://bpeqvndmfpuqb" path="res://Assets/map.png" id="1_rheyv"]
 [ext_resource type="Script" uid="uid://dkn0kyp4vf4nw" path="res://Scripts/Item.gd" id="2_us8e1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_us8e1"]
+atlas = ExtResource("1_rheyv")
+region = Rect2(47.96, 47.7465, 16.1426, 16.2441)
 
 [resource]
 script = ExtResource("2_us8e1")
-icon = ExtResource("1_rheyv")
+icon = SubResource("AtlasTexture_us8e1")
 name = "Key"
 description = "Opens Doors"
 metadata/_custom_type_script = "uid://dkn0kyp4vf4nw"

@@ -1,6 +1,6 @@
 extends Node2D
 
-@onready var tile_map_layer: TileMapLayer = $"../TileMapLayer"
+@onready var tile_map_layer: TileMapLayer = $"../Ground"
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var ui: CanvasLayer = $"../UI"
 

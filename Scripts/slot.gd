@@ -1,6 +1,6 @@
 extends Button
 
-@onready var player = get_tree().current_scene.find_child("player")
+@onready var player = get_tree().current_scene.find_child("Player")
 var item : Item = null
 	
 	
