@@ -4,7 +4,7 @@ extends Node2D
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var ui: CanvasLayer = $"../UI"
 
-var current_scene = 0
+var current_scene = 1
 
 @export var held_item: Item #item in hotbar
 
@@ -156,13 +156,12 @@ func is_on_door() -> bool:
 	var current_tile: Vector2i = tile_map_layer.local_to_map(global_position)
 	var tile_data: TileData = tile_map_layer.get_cell_tile_data(current_tile)
 
-	if tile_data and tile_data.get_custom_data("enterable"):
+	if tile_data and tile_data.get_custom_data("teleport"):
 		return true
 	return false
 	
 func change_scene():
-	current_scene += 1  # Increment to go to the next scene
 	var next_scene_path = "res://Scenes/level_" + str(current_scene) + ".tscn"
-
 	print("Changing scene to: ", next_scene_path)
 	get_tree().change_scene_to_file(next_scene_path)
+	current_scene += 1

@@ -9,7 +9,7 @@
 texture = ExtResource("1_epmsy")
 0:0/0 = 0
 0:0/0/custom_data_0 = true
-0:0/0/custom_data_2 = true
+0:0/0/custom_data_4 = true
 1:0/0 = 0
 1:0/0/custom_data_3 = true
 2:0/0 = 0
@@ -41,6 +41,8 @@ custom_data_layer_2/name = "win"
 custom_data_layer_2/type = 1
 custom_data_layer_3/name = "enterable"
 custom_data_layer_3/type = 1
+custom_data_layer_4/name = "teleport"
+custom_data_layer_4/type = 1
 sources/0 = SubResource("TileSetAtlasSource_2a8d8")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fdf82"]
