@@ -7,7 +7,10 @@
 [ext_resource type="PackedScene" uid="uid://biuqhxx0mia2j" path="res://Prefabs/key_item.tscn" id="4_xlo2f"]
 [ext_resource type="Script" uid="uid://dljpgla8l1y7h" path="res://Prefabs/dummy.gd" id="6_m61ox"]
 [ext_resource type="PackedScene" uid="uid://boa2y8pv385w5" path="res://Scenes/interaction_area.tscn" id="7_r25ej"]
+<<<<<<< HEAD
 [ext_resource type="PackedScene" uid="uid://db0ykk5df6q0" path="res://Scenes/tv_hud.tscn" id="8_r25ej"]
+=======
+>>>>>>> 557c289f33e354118910b990dad397e7cf87677b
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hh5uf"]
 texture = ExtResource("1_r0556")

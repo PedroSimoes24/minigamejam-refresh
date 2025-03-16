@@ -53,6 +53,10 @@ func move(direction: Vector2):
 		current_tile.y + direction.y,
 	)
 	
+	var tile_data: TileData = tile_map_layer.get_cell_tile_data(target_tile)
+	if tile_data.get_custom_data("walkable") == false:
+			return
+			
 	# Move player
 	is_moving = true
 	
@@ -73,8 +77,6 @@ func act():
 			fall()
 		if tile_data.get_custom_data("walkable") and tile_data.get_custom_data("win"):
 			win()
-		if tile_data.get_custom_data("walkable") == false:
-			return
 
 func fall():
 	halt_game = true
